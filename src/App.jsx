@@ -12,7 +12,7 @@ function App() {
                </span>
                <span className="italic font-normal">for Tailwindcss v3</span>
             </h1>
-            <a href="" className="btn btn-square rounded-2xl">
+            <a href="https://github.com/adixoo/material3-theme-generator" className="btn btn-square rounded-2xl">
                <GithubIcon />
             </a>
          </header>

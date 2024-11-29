@@ -70,18 +70,37 @@ export default function ColorInput() {
          </div>
          {output && (
             <>
-               <div className="mockup-code max-w-4xl mx-auto mt-20">
-                  <code>
-                     <pre id="css-code">{output.css}</pre>
-                  </code>
-               </div>
-               <div className="mockup-code max-w-4xl mx-auto mt-20">
-                  <code>
-                     <pre id="tailwind-config-code">{output.tailwind}</pre>
-                  </code>
-               </div>
+               <CodeBox code={output.css} />
+               <CodeBox code={output.tailwind} />
             </>
          )}
+      </>
+   );
+}
+function CodeBox({ code }) {
+   const [buttonText, setButtonText] = useState("Copy");
+
+   const handleCopy = async () => {
+      try {
+         await navigator.clipboard.writeText(code);
+         setButtonText("Copied!");
+         setTimeout(() => setButtonText("Copy"), 2000);
+      } catch (error) {
+         setButtonText("Failed");
+         setTimeout(() => setButtonText("Copy"), 2000);
+      }
+   };
+
+   return (
+      <>
+         <div className="mockup-code max-w-4xl mx-auto mt-20 relative">
+            <button onClick={handleCopy} className="btn absolute top-4 right-4">
+               {buttonText}
+            </button>
+            <code>
+               <pre>{code}</pre>
+            </code>
+         </div>
       </>
    );
 }
